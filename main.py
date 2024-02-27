@@ -39,8 +39,8 @@ def start_timer():
         global reps
         reps += 1
         work_sec = WORK_MIN * 60
-        short_break_sec = SHORT_BREAK_MIN
-        long_break_sec = LONG_BREAK_MIN
+        short_break_sec = SHORT_BREAK_MIN * 60
+        long_break_sec = LONG_BREAK_MIN * 60
 
         if reps % 8 == 0:
             count_down(long_break_sec)
@@ -58,6 +58,7 @@ def start_timer():
 
 def count_down(count):
     global timer
+    global program_value
 
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -67,6 +68,7 @@ def count_down(count):
     if count > 0:
         timer = window.after(1000, count_down, count - 1)
     else:
+        program_value = 0
         start_timer()
         marks = ""
         work_sessions = math.floor(reps/2)
