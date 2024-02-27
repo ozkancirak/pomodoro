@@ -1,6 +1,15 @@
 import tkinter
 from tkinter import *
+import pygame
 import math
+
+
+# ----------------------------MP3 Function------------------------------ #
+def play_mp3(file_path):
+    pygame.init()
+    pygame.mixer.init()
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
 
 
 # ---------------------------- CONSTANTS ------------------------------- #
@@ -15,6 +24,7 @@ LONG_BREAK_MIN = 20
 reps = 0
 program_value = 0
 timer = None
+Padoru = r"Z:\MY PYTHON JOURNEY\pomodoroprogram\padorupadoru.mp3"
 
 # ---------------------------- TIMER RESET ------------------------------- #
 
@@ -59,6 +69,7 @@ def start_timer():
 def count_down(count):
     global timer
     global program_value
+    global Padoru
 
     count_min = math.floor(count / 60)
     count_sec = count % 60
@@ -75,6 +86,8 @@ def count_down(count):
         for _ in range(work_sessions):
             marks += "✔"
         Label_Checkmark.config(text=marks)
+        window.attributes('-topmost', True)
+        play_mp3(r"Z:\MY PYTHON JOURNEY\pomodoroprogram\padorupadoru.mp3")
 
 
 # ---------------------------- UI SETUP ------------------------------- #
